@@ -23,7 +23,7 @@ public class EnrollServlet extends HttpServlet {
         }
 
         Map<String, com.example.serverlet.Course> courseMap = new HashMap<>();
-        courseMap.put("101", new com.example.serverlet.Course("101", "Java Programming", "Dr. Smith"));
+        courseMap.put("101", new com.example.serverlet.Course("101", "Java Programing", "Dr. Smith"));
         courseMap.put("102", new com.example.serverlet.Course("102", "Web Development", "Prof. Jane"));
         courseMap.put("103", new com.example.serverlet.Course("103", "Data Structures", "Dr. Ray"));
 
@@ -33,6 +33,6 @@ public class EnrollServlet extends HttpServlet {
         }
 
         session.setAttribute("enrolledCourses", enrolledCourses);
-        res.sendRedirect("DashboardServlet?message=Enrolled+Successfully");
+        res.sendRedirect("DashboardServlet?message=Enroled+Succesfully");
     }
 }

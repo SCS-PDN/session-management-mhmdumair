@@ -21,14 +21,14 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
 
             Cookie cookie = new Cookie("username", username);
-            cookie.setMaxAge(60 * 30); // 30 minutes
+            cookie.setMaxAge(60 * 30);
             res.addCookie(cookie);
 
             res.sendRedirect("DashboardServlet");
         } else {
             res.setContentType("text/html");
             PrintWriter out = res.getWriter();
-            out.println("<p>Invalid username or password.</p>");
+            out.println("<p>Invalid username or pasword.</p>");
             req.getRequestDispatcher("login.html").include(req, res);
         }
     }
