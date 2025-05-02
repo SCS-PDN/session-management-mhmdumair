@@ -1,15 +1,28 @@
-import java.io.IOException;
-import javax.servlet.ServletException;
+package com.example.serverlet;
+
+import java.io.*;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        // TODO: Implement logout logic
-        // 1. Invalidate session
-        // 2. Remove username cookie
-        // 3. Redirect to login.html
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("username".equals(cookie.getName())) {
+                    cookie.setMaxAge(0);
+                    res.addCookie(cookie);
+                }
+            }
+        }
+
+        res.sendRedirect("index.html");
     }
 }
